@@ -1,7 +1,13 @@
 import mongoose from "mongoose"
 
-const S = mongoose.Schema
+const Schema = mongoose.Schema
 
-const flightSchema = new S({
-
+const flightSchema = new Schema({
+  airline: String,
+  airport: String,
+  flightNo: Number,
+  departs: Date,
+}, {
+  timestamps: true,
 })
+
