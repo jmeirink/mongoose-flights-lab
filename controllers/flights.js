@@ -31,8 +31,6 @@ function show(req, res) {
   .then(flight => {
     res.render('flights/show', {
       flight: flight,
-      // Why can't I name this something other than title? Something to do with the stylesheets?
-      // Or the href in the nav.ejs?
       title: "Flight Detail"
     })
   })
@@ -41,10 +39,36 @@ function show(req, res) {
   })
 }
 
+function deleteFlight(req, res) {
+  Flight.findByIdAndDelete(req.params.id)
+  .then(() => {
+    res.redirect('/flights')
+  })
+  .catch(err => {
+    res.redirect('/')
+  })
+}
+
+// Do I need this functionality?
+function edit(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    res.render("flights/edit", {
+      flight: flight,
+      title: "Edit Flight"
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect("/")
+  })
+}
 
 export {
   newFlight as new,
   create,
   index,
   show,
+  deleteFlight as delete,
+  edit
 }
