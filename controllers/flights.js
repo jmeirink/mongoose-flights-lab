@@ -29,6 +29,7 @@ function index(req, res) {
 function show(req, res) {
   Flight.findById(req.params.id)
   .then(flight => {
+    console.log('FLIGHT: ', flight)
     res.render('flights/show', {
       flight: flight,
       title: "Flight Detail"
@@ -49,7 +50,6 @@ function deleteFlight(req, res) {
   })
 }
 
-// Do I need this functionality?
 function edit(req, res) {
   Flight.findById(req.params.id)
   .then(flight => {
@@ -64,11 +64,26 @@ function edit(req, res) {
   })
 }
 
+function update(req, res) {
+  for (let key in req.body) {
+    if(req.body[key] === "") delete req.body[key]
+  }
+  Flight.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  .then(flight => {
+    res.redirect(`/flights/${flight._id}`)
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect("/")
+  })
+}
+
 export {
   newFlight as new,
   create,
   index,
   show,
   deleteFlight as delete,
-  edit
+  edit,
+  update,
 }

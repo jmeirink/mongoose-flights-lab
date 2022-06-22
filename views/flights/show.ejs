@@ -19,6 +19,15 @@
     <div><%= flight.flightNo %></div>
     <div>Departure: </div>
     <div><%= flight.departs %></div>
+    <div>Tickets: </div>
+    <div>
+      <% flight.tickets.forEach(ticket => { %>
+        <ul>
+          <li><%= ticket.seat %></li>
+          <li><%= ticket.price %></li>
+        </ul>
+      <% }) %>
+    </div>
   </section>
 </main>
   
