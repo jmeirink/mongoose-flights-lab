@@ -3,14 +3,14 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>Flights List</h1>
+  <h1>Flights</h1>
   <table>
     <thead>
       <tr>
         <th>Airline</th>
         <th>Airport</th>
         <th>Flight Number</th>
-        <th>Departure</th>
+        <th>Departures</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +20,7 @@
           <td><%= flight.airport %></td>
           <td><%= flight.flightNo %></td>
           <td><%= flight.departs %></td>
+          <td><a href="/flights/<%= flight._id %>">Flight Details</a></td>
         </tr>
       <% }) %>
     </tbody>

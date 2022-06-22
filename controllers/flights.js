@@ -6,21 +6,15 @@ function newFlight(req, res) {
   })
 }
 
-// ---------------------------------------
-
 function create(req, res) {
   Flight.create(req.body)
   .then(flight => {
-    console.log("FLIGHT", flight)
     res.redirect('/flights')
   })
   .catch(err => {
-    console.log(err)
     res.redirect('/flights')
   })
 }
-
-// ---------------------------------------
 
 function index(req, res) {
   Flight.find({})
@@ -32,8 +26,25 @@ function index(req, res) {
   })
 }
 
+function show(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    res.render('flights/show', {
+      flight: flight,
+      // Why can't I name this something other than title? Something to do with the stylesheets?
+      // Or the href in the nav.ejs?
+      title: "Flight Detail"
+    })
+  })
+  .catch(err => {
+    res.redirect('/')
+  })
+}
+
+
 export {
   newFlight as new,
   create,
   index,
+  show,
 }
