@@ -19,7 +19,6 @@
     <div><%= flight.flightNo %></div>
     <div>Departure: </div>
     <div><%= flight.departs %></div>
-
     <div>Meals: </div>
     <form action="/flights/<%= flight._id %>/meals" method="POST">
       <select name="mealId">
@@ -29,9 +28,6 @@
       </select>
       <button type="submit">Add Meal</button>
     </form>
-
-<!------------------------------------------------------->
-
     <div>Meals Added: </div>
     <tbody>
       <% flight.meals.forEach(meal => { %>
@@ -40,9 +36,6 @@
         </tr>
       <% }) %>
     </tbody>
-
-<!------------------------------------------------------->
-
   </section>
   
   <% // new markup below %>
