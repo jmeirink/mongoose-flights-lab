@@ -28,11 +28,11 @@
 
     <!-- flight number -->
     <label for="flightNo-input">Flight Number:</label>
-    <input type="text" name="flightNo" value="flight.flightNo" id="flightNo-input" required>
+    <input type="text" name="flightNo" value="<%= flight.flightNo %>" id="flightNo-input" required>
 
     <!-- departure -->
     <label for="departs-input">Departure:</label>
-    <input type="datetime-local" name="departs" value="flight.departs" id="departs-input">
+    <input required type="datetime-local" name="departs" value="<%= flight.departs.toISOString().slice(0, 16) %>">
 
     <button type="submit">Save Changes</button>
   </form>

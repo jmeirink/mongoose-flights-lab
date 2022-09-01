@@ -48,7 +48,7 @@
     <label for="content-textarea">Ticket:</label>
     <input name="seat" id="seat" required pattern="[A-F][1-9]\d?">
     <label for="content-textarea">Price:</label>
-    <input name="price" id="price">
+    <input required type="number" placeholder="$0" name="price" min="0">
     <button type="submit">Add Ticket</button>
   </form>
   <% if (flight.tickets.length) { %>
